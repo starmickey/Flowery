@@ -1,10 +1,13 @@
 const express = require("express");
 const ProductRoutes = require("./routes/product.route.js");
+const cors = require("cors");
 
 const app = express();
 
 /* A middleware that parses the body of the request and makes it available in the req.body object. */
 app.use(express.json());
+
+app.use(cors());    
 
 /* This is the root route. It is used to check if the server is running. */
 app.get("/", (req, res) => {

@@ -1,18 +1,16 @@
+import axios from "axios";
+
+// async function getProducts() {
 export async function getProducts() {
-  return new Promise ((resolve, reject) => {
-    resolve([
-      {
-        src: "./watch.jpg",
-        name: "White Watch",
-        price: 200,
-        description: "For modern man.",
-      },
-      {
-        src: "./trainer.jpg",
-        name: "Red trainers",
-        price: 100,
-        description: "Time to fly.",
-      },
-    ]);
-  });
+  return axios.get('http://127.0.0.1:5000/api/products')
+    .then(function (response) {
+      // handle success
+      const { status, data } = response;
+
+      if (status === 200) {
+        return data;
+      } else {
+        throw new Error(`Request error. Status: ${status}`);
+      }
+    })
 }

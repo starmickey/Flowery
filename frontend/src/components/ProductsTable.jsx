@@ -11,16 +11,21 @@ export default function ProductsTable() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts().then((fetchedProducts) => {
-      setProducts(fetchedProducts);
-    });
+    // Fetch the products data from the server
+    getProducts()
+      .then((fetchedProducts) => {
+        setProducts(fetchedProducts);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   });
 
   return (
     <Fragment>
       <Grid container spacing={3}>
         {products.map((product, index) =>
-          <Grid item xs={3} key={index}>
+          <Grid item xs={6} key={index}>
             <ProductCard
               src={product.src}
               name={product.name}
